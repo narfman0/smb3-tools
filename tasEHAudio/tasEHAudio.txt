@@ -1,0 +1,19 @@
+60.0988139hz
+
+local start_frame   = 1674
+local goodframe_2_1 = 18052 -- 684 lag, 290 ingame clock, 18435 end of level lag frame
+local goodframe_2_2 = 19951 -- 769 lag, 285 ingame clock, 20433 end of level lag frame
+local goodframe_2_f = 22668 -- 868 lag, 277 ingame clock, 23075 end of level lag frame
+local goodframe_ph  = 23987 -- 940 lag, 24311 end of level lag frame
+
+start_frame	= 1674/60.0988139	= 27.854127084528035918525839658876s
+goodframe_2_1	= 18052/60.0988139	= 300.37198454593793572355343937994s
+goodframe_2_2 	= 19951/60.0988139	= 331.96994591602081517951554781017
+goodframe_2_f	= 22668/60.0988139	= 377.17882482203197025157929115137
+goodframe_ph	= 23987/60.0988139	= 399.12601336712903081103901785988
+
+026.354=0m26s354ms
+298.871=4m58s871ms
+330.469=5m30s469ms
+375.678=6m15s678ms
+397.626=6m37s626ms
