@@ -18,6 +18,14 @@ import re
 import sys
 import xml.etree.ElementTree as ET
 
+# TODO pass this as an argument?
+split_on_peachs_letter = True
+frames_between_king_wand_grab_and_peachs_letter_w1 = 858
+frames_between_king_wand_grab_and_peachs_letter_w2 = 865  # of course they are different, lets just pick one in the middle and pretend its average
+peachs_letter_additional_s = (
+    frames_between_king_wand_grab_and_peachs_letter_w2 * 0.01664
+)
+
 # start: 0
 # world 1: 122157 - 121098 = 1059 = 17.638s
 # world 2: 146415 - 145352 = 1063 = 17.704s (+1 tile)
@@ -29,10 +37,21 @@ import xml.etree.ElementTree as ET
 # world 8: 0
 deltas = [0, 17.638, 17.704, 17.571, 17.771, 17.704, 17.521, 17.638, 0]
 
+if split_on_peachs_letter:
+    deltas = [
+        delta + peachs_letter_additional_s if delta else delta for delta in deltas
+    ]
+
 
 def get_time(time_element):
     t = re.sub(r"(?<=\.\d\d\d)0000", "000", time_element.text)
     t = re.sub(r"(:\d\d)$", r"\1.000000", t)
+
+    # strptime only supports 6 numerals after the decimal
+    dot_index = t.find(".")
+    if dot_index < len(t) - 7:
+        t = t[0 : dot_index + 7]
+
     return datetime.datetime.strptime(t, "%H:%M:%S.%f")
 
 
